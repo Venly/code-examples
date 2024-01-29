@@ -8,19 +8,7 @@ To run the examples, follow these simple steps:
 
 1. Navigate to the `<example>` folder of your choice.
 
-2. Run the following command to install the necessary dependencies:
-
-    ```bash
-    npm install
-    ```
-
-3. Read the `README.md` file in the specific folder for detailed instructions and information about the example.
-
-4. Once you've followed the specific instructions, run the example using:
-
-    ```bash
-    npm run start
-    ```
+2. Read the `README.md` file in the specific folder for detailed instructions and information about the example.
 
 ## Examples List
 
