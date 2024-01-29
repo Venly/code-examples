@@ -1,6 +1,6 @@
 import { Chain, Eip712SignatureResponse, Token, Wallet } from './models';
-import { Api }                                           from '../api';
-import { Utils }                                         from '../utils';
+import { Api }                                           from './api';
+import { Utils }                                         from './utils';
 
 export class User {
     private api: Api;

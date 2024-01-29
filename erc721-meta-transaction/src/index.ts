@@ -1,6 +1,6 @@
-import { Chains, Token, Wallet } from './metatransaction/models';
-import { User }                  from './metatransaction/user';
-import { Payer }                 from './metatransaction/payer';
+import { Chains, Token, Wallet } from './models';
+import { User }                  from './user';
+import { Payer }                 from './payer';
 
 export function main() {
     testMetaTransactionNftTransfer()

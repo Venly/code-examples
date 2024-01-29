@@ -1,4 +1,4 @@
-import { Api }                                    from '../api';
+import { Api }                                    from './api';
 import { Chain, Eip712SignatureResponse, Wallet } from './models';
 
 export class Payer {

@@ -1,6 +1,6 @@
 import axios                      from 'axios';
 import { API_ROOT, BEARER_TOKEN } from './config';
-import { SigningMethod }          from './metatransaction/models';
+import { SigningMethod }          from './models';
 
 
 export class Api {
