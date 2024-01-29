@@ -20,7 +20,7 @@ async function testMetaTransactionNftTransfer() {
             value: '111111',
         },
     };
-    const funderWallet: Wallet = {
+    const payerWallet: Wallet = {
         id: '35e0550f-f380-433f-9b2a-b340cc28d37f',
         signingMethod: {
             id: '147fb60c-a00c-46fe-aef9-8eaf6563d945',
@@ -39,7 +39,7 @@ async function testMetaTransactionNftTransfer() {
 
     const eip712Domain = await user.buildEip712DomainForNftTransfer(chain, userWallet, token, toWalletAddress);
     const eip712Signature = await user.signEip712Message(chain, userWallet, eip712Domain);
-    const response = await payer.executeMetaTransaction(chain, funderWallet, eip712Domain, eip712Signature);
+    const response = await payer.executeMetaTransaction(chain, payerWallet, eip712Domain, eip712Signature);
 
     console.log(response);
 }
