@@ -1,4 +1,4 @@
-import { User }               from './user';
+import { Transaction }        from './transaction';
 import { SigningMethodInput } from './models';
 
 export function main() {
@@ -23,11 +23,11 @@ async function testEncryptedSigningMethod() {
             value: "0.01"
         }
     };
-    const user = new User();
-    user.executeExampleTransferTransaction(signingMethodInput, requestBody)
-        .then(res => {
-            console.log(res);
-        })
+    const transaction = new Transaction();
+    transaction.executeTransaction(signingMethodInput, requestBody)
+               .then(res => {
+                   console.log(res);
+               })
 }
 
 

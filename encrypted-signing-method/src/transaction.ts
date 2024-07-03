@@ -2,7 +2,7 @@ import { SigningMethodInput } from './models';
 import { Api }                from './api';
 import { SigningMethod }      from './signing-method';
 
-export class User {
+export class Transaction {
     private api: Api;
     private signingMethod: SigningMethod;
 
@@ -11,8 +11,8 @@ export class User {
         this.signingMethod = new SigningMethod();
     }
 
-    public async executeExampleTransferTransaction(sm: SigningMethodInput,
-                                                   body: any): Promise<{ transactionHash: string }> {
+    public async executeTransaction(sm: SigningMethodInput,
+                                    body: any): Promise<{ transactionHash: string }> {
         return this.api
                    .doPostWithInterceptor<{ transactionHash: string }>(
                        '/transactions',
