@@ -2,11 +2,10 @@ import { Transaction }        from './transaction';
 import { SigningMethodInput } from './models';
 
 export function main() {
-    testEncryptedSigningMethod()
-        .then(() => console.log('done'));
+    testEncryptedSigningMethod();
 }
 
-async function testEncryptedSigningMethod() {
+function testEncryptedSigningMethod() {
     // replace with your signing method input
     const signingMethodInput: SigningMethodInput = {
         id: '04b24bf2-a942-40d6-b5d6-bdb8bd660243',
@@ -29,6 +28,5 @@ async function testEncryptedSigningMethod() {
                    console.log(res);
                })
 }
-
 
 main();
