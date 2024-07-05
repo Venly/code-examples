@@ -1,6 +1,6 @@
-# ERC721 Meta Transaction Example
+# Encrypted Signing Methods
 
-Welcome to the ERC721 Meta Transaction Example! This example demonstrates how to perform meta-transactions for ERC721 token transfers and is based on a Venly ERC115 contract that implements the ERC721 standard (example contract [here](https://mumbai.polygonscan.com/address/0x80E64e1AAa57034CA0561288449B2FE9687a94a8). Follow the steps below to set up and run the example.
+Welcome to the Encrypted Signing Methods Example! This example demonstrates how to perform a transaction using an ecrypted signing method.
 
 ## Setup
 
