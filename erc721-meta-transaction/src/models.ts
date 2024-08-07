@@ -18,6 +18,11 @@ export class Chains {
         id: 137,
         secretType: 'MATIC',
     };
+
+    static readonly BASE_SEPOLIA: Chain = {
+        id: 84532,
+        secretType: 'BASE',
+    };
 }
 
 export interface Contract {

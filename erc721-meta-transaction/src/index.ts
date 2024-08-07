@@ -11,7 +11,7 @@ async function testMetaTransactionNftTransfer() {
     const user = new User();
     const payer = new Payer();
 
-    const chain = Chains.POLYGON_TESTNET;
+    const chain = Chains.BASE_SEPOLIA;
     const userWallet: Wallet = {
         id: '35e0550f-f380-433f-9b2a-b340cc28d37f',
         address: '0xd23087B91c2399dc1AFB337E968EFE9a5081941d',
@@ -29,18 +29,21 @@ async function testMetaTransactionNftTransfer() {
     };
     const token: Token = {
         contract: {
-            address: '0x80E64e1AAa57034CA0561288449B2FE9687a94a8',
-            name: 'Classic Cars',
+            address: '0x675fd9b8a2821196c932aa6906a5cd62f281ac1b',
+            name: 'Digimon',
         },
-        id: 25,
+        id: 4,
         amount: 1,
     };
-    const toWalletAddress = '0x3C7f7Fda33Dc8716A58a691165269998A6A61B5F';
+    const toWalletAddress = '0x4cA2A2f943B1BDab80D1AA0985F58a3Df8F92097';
 
     const eip712Domain = await user.buildEip712DomainForNftTransfer(chain, userWallet, token, toWalletAddress);
-    const eip712Signature = await user.signEip712Message(chain, userWallet, eip712Domain);
-    const response = await payer.executeMetaTransaction(chain, payerWallet, eip712Domain, eip712Signature);
+    console.log(eip712Domain);
 
+    const eip712Signature = await user.signEip712Message(chain, userWallet, eip712Domain);
+    console.log(eip712Signature);
+
+    const response = await payer.executeMetaTransaction(chain, payerWallet, eip712Domain, eip712Signature);
     console.log(response);
 }
 

@@ -24,6 +24,7 @@ export class Api {
                 },
             ],
         };
+        console.log(getNonceRequest);
         const res = await this.doPost('/contracts/read', getNonceRequest);
         return res[0].value;
     }
