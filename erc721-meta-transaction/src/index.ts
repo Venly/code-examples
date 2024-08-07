@@ -38,13 +38,13 @@ async function testMetaTransactionNftTransfer() {
     const toWalletAddress = '0x4cA2A2f943B1BDab80D1AA0985F58a3Df8F92097';
 
     const eip712Domain = await user.buildEip712DomainForNftTransfer(chain, userWallet, token, toWalletAddress);
-    console.log(eip712Domain);
+    console.log("EIP712 result: ", eip712Domain);
 
     const eip712Signature = await user.signEip712Message(chain, userWallet, eip712Domain);
-    console.log(eip712Signature);
+    console.log('eip712Signature', eip712Signature);
 
     const response = await payer.executeMetaTransaction(chain, payerWallet, eip712Domain, eip712Signature);
-    console.log(response);
+    console.log('final response', response);
 }
 
 

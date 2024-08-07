@@ -24,18 +24,20 @@ export class Api {
                 },
             ],
         };
-        console.log(getNonceRequest);
+        console.log('Executing POST /contracts/read (to get nonce):', getNonceRequest)
         const res = await this.doPost('/contracts/read', getNonceRequest);
         return res[0].value;
     }
 
     async sign(signatureRequest: any,
                signingMethod: SigningMethod) {
+        console.log('Executing POST /signatures:', signatureRequest, signingMethod)
         return await this.doPost('/signatures', signatureRequest, signingMethod);
     }
 
     async executeTransaction(transactionRequest: any,
                              signingMethod: SigningMethod): Promise<{ transactionHash: string }> {
+        console.log('Executing POST /transactions:', transactionRequest, signingMethod)
         return await this.doPost('/transactions', transactionRequest, signingMethod);
     }
 
