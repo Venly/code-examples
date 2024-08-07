@@ -31,13 +31,13 @@ export class Api {
 
     async sign(signatureRequest: any,
                signingMethod: SigningMethod) {
-        console.log('Executing POST /signatures:', signatureRequest, signingMethod)
+        console.log('Executing POST /signatures:', JSON.stringify(signatureRequest), signingMethod)
         return await this.doPost('/signatures', signatureRequest, signingMethod);
     }
 
     async executeTransaction(transactionRequest: any,
                              signingMethod: SigningMethod): Promise<{ transactionHash: string }> {
-        console.log('Executing POST /transactions:', transactionRequest, signingMethod)
+        console.log('Executing POST /transactions:', JSON.stringify(transactionRequest), signingMethod)
         return await this.doPost('/transactions', transactionRequest, signingMethod);
     }
 
