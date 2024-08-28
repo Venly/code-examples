@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start-transfer-with-authorization": "ts-node src/index.ts FUNCTION=transferWithAuthorization"
+    "start-transfer-with-authorization": "ts-node src/index.ts FUNCTION=transferWithAuthorization",
+    "start-permit-transfer-from": "ts-node src/index.ts FUNCTION=permitTransferFrom"
   },
   "devDependencies": {
     "typescript": "^5.3.3"

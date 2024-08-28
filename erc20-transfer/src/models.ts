@@ -32,7 +32,7 @@ export interface Erc20Contract {
 
 export interface Wallet {
     id: string;
-    address?: string;
+    address: string;
     signingMethod: SigningMethod;
 }
 

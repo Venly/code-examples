@@ -1,9 +1,33 @@
 import axios                      from 'axios';
 import { API_ROOT, BEARER_TOKEN } from './config';
-import { SigningMethod }          from './models';
+import { Chain, SigningMethod }   from './models';
 
 
 export class Api {
+    async getNonce(functionName: string,
+                   chain: Chain,
+                   contractAddress: string,
+                   walletAddress: string): Promise<any> {
+        const getNonceRequest = {
+            secretType: chain.secretType,
+            contractAddress: contractAddress,
+            functionName: functionName,
+            inputs: [
+                {
+                    type: 'address',
+                    value: walletAddress,
+                },
+            ],
+            outputs: [
+                {
+                    type: 'uint256',
+                },
+            ],
+        };
+        console.log('Executing POST /contracts/read (to get nonce):', getNonceRequest)
+        const res = await this.doPost('/contracts/read', getNonceRequest);
+        return res[0].value;
+    }
 
     async sign(signatureRequest: any,
                signingMethod: SigningMethod) {
