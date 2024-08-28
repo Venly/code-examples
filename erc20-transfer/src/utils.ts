@@ -17,4 +17,12 @@ export class Utils {
     public static randomNonce(): string {
         return '0x' + crypto.randomBytes(32).toString('hex');
     }
+
+    public static getRunArgument(name: string) {
+        const args = process.argv;
+        const filtered = args.map(a => a.split('='))
+                             .filter(arg => arg[0] === name)
+                             .map(arg => arg[1]);
+        return filtered.length === 0 ? null : filtered[0];
+    }
 }

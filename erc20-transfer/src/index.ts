@@ -4,11 +4,19 @@ import { Payer }                      from './payer';
 import { Utils }                      from './utils';
 
 export function main() {
-    testMetaTransactionNftTransfer()
-        .then(() => console.log('done'));
+    const option = Utils.getRunArgument('FUNCTION');
+    switch (option) {
+        case  'transferWithAuthorization':
+            testTransferWithAuthorization()
+                .then(() => console.log('done'));
+            break;
+        default:
+            throw `Unrecognized FUNCTION: ${process.env.OPTION}`
+    }
+
 }
 
-async function testMetaTransactionNftTransfer() {
+async function testTransferWithAuthorization() {
     const user = new User();
     const payer = new Payer();
 
