@@ -1,0 +1,102 @@
+import { Chain, Eip712SignatureResponse, Erc20Token, Wallet } from './models';
+import { Api }                                                from './api';
+import { Utils }                                              from './utils';
+
+export class User {
+    private api: Api;
+
+    constructor() {
+        this.api = new Api();
+    }
+
+    public async signEip712Message(chain: Chain,
+                                   userWallet: Wallet,
+                                   eip712Domain: any): Promise<Eip712SignatureResponse> {
+        const signatureRequest = {
+            signatureRequest: {
+                type: 'EIP712',
+                secretType: chain.secretType,
+                walletId: userWallet.id,
+                data: eip712Domain,
+            },
+        };
+        return this.api.sign(signatureRequest, userWallet.signingMethod)
+                   .then((res: any) => res as Eip712SignatureResponse);
+    }
+
+    public async buildEip712DomainForTransferWithAuthorization(
+        chain: Chain,
+        userWallet: Wallet,
+        token: Erc20Token,
+        toWalletAddress: string,
+    ): Promise<any> {
+        const contract = token.contract;
+        const amount = Utils.toRawAmount({amount: token.amount, decimals: token.decimals});
+        const validBefore = Math.floor((new Date().valueOf() + 3600000) / 1000).toString(); // valid for 1 hr
+        const nonce = Utils.randomNonce();
+        return {
+            types: { // copy the types section as it is
+                EIP712Domain: [
+                    {
+                        name: "name",
+                        type: "string"
+                    },
+                    {
+                        name: "version",
+                        type: "string"
+                    },
+                    {
+                        name: "chainId",
+                        type: "uint256"
+                    },
+                    {
+                        name: "verifyingContract",
+                        type: "address"
+                    }
+                ],
+                TransferWithAuthorization: [
+                    {
+                        name: "from",
+                        type: "address"
+                    },
+                    {
+                        name: "to",
+                        type: "address"
+                    },
+                    {
+                        name: "value",
+                        type: "uint256"
+                    },
+                    {
+                        name: "validAfter",
+                        type: "uint256"
+                    },
+                    {
+                        name: "validBefore",
+                        type: "uint256"
+                    },
+                    {
+                        name: "nonce",
+                        type: "bytes32"
+                    }
+                ]
+            },
+            primaryType: "TransferWithAuthorization", // this will be TransferWithAuthorization
+            domain: {
+                name: contract.name, // name of the ERC20 token contract
+                version: "2", //version of the contract
+                chainId: chain.id, // the chainId
+                verifyingContract: contract.address // the ERC20 token contract address
+            },
+            message: {
+                from: userWallet.address, // from wallet address
+                to: toWalletAddress, // to wallet address
+                value: amount, // value being transferred
+                validAfter: "0", // time after which the signed message will be valid
+                validBefore: validBefore, // time until the signed message will be valid
+                nonce: nonce // random byte32 nonce
+            }
+        }
+    };
+
+}

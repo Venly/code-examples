@@ -25,7 +25,7 @@ export class Chains {
     };
 }
 
-export interface Contract {
+export interface Erc20Contract {
     address: string;
     name: string;
 }
@@ -36,10 +36,10 @@ export interface Wallet {
     signingMethod: SigningMethod;
 }
 
-export interface Token {
-    contract: Contract;
-    id: number;
+export interface Erc20Token {
+    contract: Erc20Contract;
     amount: number;
+    decimals: number,
 }
 
 export interface Eip712SignatureResponse {
