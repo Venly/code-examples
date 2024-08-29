@@ -1,6 +1,10 @@
 # ERC721 Meta Transaction Example
 
-Welcome to the ERC721 Meta Transaction Example! This example demonstrates how to perform meta-transactions for ERC721 token transfers and is based on a Venly ERC115 contract that implements the ERC721 standard (example contract [here](https://mumbai.polygonscan.com/address/0x80E64e1AAa57034CA0561288449B2FE9687a94a8). Follow the steps below to set up and run the example.
+Welcome to the ERC20 Transaction Example! This example demonstrates how to perform transfer with authorization and permit/transferFrom for ERC20 token transfers. Follow the steps below to set up and run the example.
+More information for:
+- Transfer with authorization - [Click Here](https://docs.venly.io/docs/gasless-tx-transfer-with-authorization-erc20)
+- Permit/TransferFrom - [Click Here](https://docs.venly.io/docs/gasless-tx-permit-transferfrom-erc20)
+
 
 ## Setup
 
@@ -17,7 +21,7 @@ Welcome to the ERC721 Meta Transaction Example! This example demonstrates how to
     - `userWallet`: The wallet of the user that holds the NFT.
     - `payerWallet`: The wallet of the user paying for the NFT.
     - `token`: The token being transferred.
-    - `toWalletAddress`: The address where the NFT will be sent to.
+    - `toWalletAddress`: The address where the ERC20 token will be sent to.
 
 ## Running the Example
 
@@ -25,4 +29,9 @@ After setting up the configuration, you can run the example by executing the fol
 
 ```bash
 npm install
-npm run start
+
+-- to run the Transfer With Authorization example
+npm run start-transfer-with-authorization 
+
+-- to run the Permit/Transfer from example
+npm run start-permit-transfer-from
