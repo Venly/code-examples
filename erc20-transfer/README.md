@@ -17,9 +17,9 @@ More information for:
 3. Open the `index.ts` file.
 
 4. Replace the example values with the actual values from your account:
-    - `chain`: The chain you are using to perform the meta-transaction.
-    - `userWallet`: The wallet of the user that holds the ERC20 Token.
-    - `payerWallet`: The wallet of the user paying for the ERC20 Token.
+    - `chain`: The chain you are using to perform the transaction.
+    - `userWallet`: The wallet of the user that holds the ERC20 token.
+    - `payerWallet`: The wallet of the user paying for the ERC20 transfer transaction.
     - `token`: The token being transferred.
     - `toWalletAddress`: The address where the ERC20 token will be sent to.
 
