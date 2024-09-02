@@ -18,8 +18,8 @@ More information for:
 
 4. Replace the example values with the actual values from your account:
     - `chain`: The chain you are using to perform the meta-transaction.
-    - `userWallet`: The wallet of the user that holds the NFT.
-    - `payerWallet`: The wallet of the user paying for the NFT.
+    - `userWallet`: The wallet of the user that holds the ERC20 Token.
+    - `payerWallet`: The wallet of the user paying for the ERC20 Token.
     - `token`: The token being transferred.
     - `toWalletAddress`: The address where the ERC20 token will be sent to.
 
