@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "start-transfer-with-authorization": "ts-node src/index.ts FUNCTION=transferWithAuthorization",
+    "start-permit-transfer-from": "ts-node src/index.ts FUNCTION=permitTransferFrom"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "axios": "^1.6.5",
+    "ts-node": "^10.9.2"
+  }
+}
