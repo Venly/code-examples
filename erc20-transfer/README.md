@@ -1,4 +1,4 @@
-# ERC721 Meta Transaction Example
+# ERC20 Meta Transaction Example
 
 Welcome to the ERC20 Transaction Example! This example demonstrates how to perform transfer with authorization and permit/transferFrom for ERC20 token transfers. Follow the steps below to set up and run the example.
 More information for:
