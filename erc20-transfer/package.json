@@ -1,7 +1,9 @@
 {
   "scripts": {
-    "start-transfer-with-authorization": "ts-node src/index.ts FUNCTION=transferWithAuthorization",
-    "start-permit-transfer-from": "ts-node src/index.ts FUNCTION=permitTransferFrom"
+    "start-transfer-with-authorization": "ts-node src/index.ts flow=transferWithAuthorization",
+    "start-permit-transfer-from": "ts-node src/index.ts flow=permitTransferFrom",
+    "start-transfer-with-authorization-legacy": "ts-node src/index.ts flow=transferWithAuthorization useLegacy=true",
+    "start-permit-transfer-from-legacy": "ts-node src/index.ts flow=permitTransferFrom useLegacy=true"
   },
   "devDependencies": {
     "typescript": "^5.3.3"

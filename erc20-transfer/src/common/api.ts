@@ -1,6 +1,6 @@
 import axios                      from 'axios';
-import { API_ROOT, BEARER_TOKEN } from './config';
 import { Chain, SigningMethod }   from './models';
+import { API_ROOT, BEARER_TOKEN } from '../config';
 
 
 export class Api {

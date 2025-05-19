@@ -14,9 +14,11 @@ More information for:
     - `API_ROOT`: The root URL of the API.
     - `BEARER_TOKEN`: The bearer token for authentication.
 
-3. Open the `index.ts` file.
+3. This code-example contains 2 different flows:
+    - `TransactionFlow` is the more recent standard flow for EIP712 documents
+    - `LegacyTransactionFlow` under the `legacy` dir is the flow with the legacy standard of EIP712 documents.
 
-4. Replace the example values with the actual values from your account:
+4. Depending on what you are implementing, open either `TransactionFlow` or `LegacyTransactionFlow` and replace the example values with the actual values from your account:
     - `chain`: The chain you are using to perform the transaction.
     - `userWallet`: The wallet of the user that holds the ERC20 token.
     - `payerWallet`: The wallet of the user paying for the ERC20 transfer transaction.
@@ -35,3 +37,9 @@ npm run start-transfer-with-authorization
 
 -- to run the Permit/Transfer from example
 npm run start-permit-transfer-from
+
+-- to run the Transfer With Authorization example (legacy)
+npm run start-transfer-with-authorization-legacy
+
+-- to run the Permit/Transfer from example (legacy)
+npm run start-permit-transfer-from-legacy
