@@ -77,7 +77,10 @@ export class LegacyTransactionFlow {
         const permitResponse = await this.payer.executePermit(this.chain, this.payerWallet, eip712Domain, eip712Signature);
         console.log('permit response', permitResponse);
 
-        const response = await this.payer.executeTransferFrom(this.chain, this.payerWallet, eip712Domain, this.toWalletAddress);
+        const response = await this.payer.executeTransferFrom(
+            this.chain, this.payerWallet, eip712Domain, this.toWalletAddress,
+            {dependsOnTxHash: permitResponse.transactionHash}
+        );
         console.log('transfer response', response);
     }
 }

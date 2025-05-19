@@ -111,10 +111,22 @@ export class Payer {
         return this.api.executeTransaction(metaTxRequest, payerWallet.signingMethod);
     }
 
-    public executeTransferFrom(chain: Chain,
-                               payerWallet: Wallet,
-                               eip712Domain: any,
-                               toWalletAddress: string) {
+    public async executeTransferFrom(chain: Chain,
+                                     payerWallet: Wallet,
+                                     eip712Domain: any,
+                                     toWalletAddress: string,
+                                     options?: { dependsOnTxHash?: string }): Promise<any> {
+        if (options?.dependsOnTxHash) {
+            console.log('Waiting for transaction to confirm....')
+            const status = await this.api.getTxStatus(chain, options.dependsOnTxHash);
+            if (status === 'PENDING') {
+                return this.executeTransferFrom(chain, payerWallet, eip712Domain, toWalletAddress, options);
+            }
+            if (status === 'FAILED') {
+                throw `Depending transaction ${options.dependsOnTxHash} failed. Stopping execution`;
+            }
+
+        }
         const metaTxRequest = {
             transactionRequest: {
                 type: "CONTRACT_EXECUTION",
