@@ -1,6 +1,6 @@
 import axios                      from 'axios';
-import { API_ROOT, BEARER_TOKEN } from './config';
 import { Chain, SigningMethod }   from './models';
+import { API_ROOT, BEARER_TOKEN } from '../config';
 
 
 export class Api {
@@ -29,6 +29,12 @@ export class Api {
         return res[0].value;
     }
 
+    async getTxStatus(chain: Chain,
+                      txHash: string): Promise<string> {
+        const res = await this.doGet(`/transactions/${chain.secretType}/${txHash}/status`);
+        return res.status as string;
+    }
+
     async sign(signatureRequest: any,
                signingMethod: SigningMethod) {
         console.log('Executing POST /signatures:', signatureRequest, signingMethod)
@@ -54,6 +60,25 @@ export class Api {
         }
         const resp = await axios
             .post(API_ROOT + url, body, {headers})
+            .then(resp => resp.data)
+            .catch(err => err.response);
+        if (!resp.success) {
+            const message = resp.status + ' Api Error';
+            console.error(message);
+            console.error(resp.data);
+            throw message;
+        }
+        return resp.result;
+    }
+
+    async doGet(url: string): Promise<any> {
+        let headers: any = {
+            Authorization: 'Bearer ' + BEARER_TOKEN,
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+        };
+        const resp = await axios
+            .get(API_ROOT + url, {headers})
             .then(resp => resp.data)
             .catch(err => err.response);
         if (!resp.success) {

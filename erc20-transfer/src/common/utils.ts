@@ -25,4 +25,17 @@ export class Utils {
                              .map(arg => arg[1]);
         return filtered.length === 0 ? null : filtered[0];
     }
+
+    public static numberToHex(nr: number,
+                              options?: { padding: { padWith: string, length: number } }) {
+        let output = nr.toString(16);
+        if (options) {
+            output = output.padStart(options.padding.length, options.padding.padWith)
+        }
+        return `0x${output}`;
+    }
+
+    public static wait(timeoutMillis: number) {
+        return new Promise(resolve => setTimeout(resolve, timeoutMillis));
+    }
 }

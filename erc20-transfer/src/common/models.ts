@@ -28,6 +28,7 @@ export class Chains {
 export interface Erc20Contract {
     address: string;
     name: string;
+    version: string
 }
 
 export interface Wallet {

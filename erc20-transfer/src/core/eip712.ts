@@ -1,27 +1,12 @@
-import { Chain, Eip712SignatureResponse, Erc20Token, Wallet } from './models';
-import { Api }                                                from './api';
-import { Utils }                                              from './utils';
+import { Chain, Erc20Token, Wallet } from '../common/models';
+import { Utils }                     from '../common/utils';
+import { Api }                       from '../common/api';
 
-export class User {
+export class Eip712 {
     private api: Api;
 
     constructor() {
         this.api = new Api();
-    }
-
-    public async signEip712Message(chain: Chain,
-                                   userWallet: Wallet,
-                                   eip712Domain: any): Promise<Eip712SignatureResponse> {
-        const signatureRequest = {
-            signatureRequest: {
-                type: 'EIP712',
-                secretType: chain.secretType,
-                walletId: userWallet.id,
-                data: eip712Domain,
-            },
-        };
-        return this.api.sign(signatureRequest, userWallet.signingMethod)
-                   .then((res: any) => res as Eip712SignatureResponse);
     }
 
     public async buildEip712DomainForTransferWithAuthorization(
@@ -84,7 +69,7 @@ export class User {
             primaryType: "TransferWithAuthorization", // this will be TransferWithAuthorization
             domain: {
                 name: contract.name, // name of the ERC20 token contract
-                version: "2", //version of the contract
+                version: contract.version, //version of the contract
                 chainId: chain.id, // the chainId
                 verifyingContract: contract.address // the ERC20 token contract address
             },
@@ -156,7 +141,7 @@ export class User {
             primaryType: "Permit", // this will be Permit
             domain: {
                 name: contract.name, // name of the ERC20 token contract
-                version: "2", //version of the contract
+                version: contract.version, //version of the contract
                 chainId: chain.id, // the chainId
                 verifyingContract: contract.address // the ERC20 token contract address
             },
@@ -169,5 +154,4 @@ export class User {
             }
         }
     };
-
 }
