@@ -141,7 +141,7 @@ export class Eip712 {
             primaryType: "Permit", // this will be Permit
             domain: {
                 name: contract.name, // name of the ERC20 token contract
-                version: "2", //version of the contract
+                version: contract.version, //version of the contract
                 chainId: chain.id, // the chainId
                 verifyingContract: contract.address // the ERC20 token contract address
             },

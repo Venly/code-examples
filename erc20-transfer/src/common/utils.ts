@@ -35,4 +35,7 @@ export class Utils {
         return `0x${output}`;
     }
 
+    public static wait(timeoutMillis: number) {
+        return new Promise(resolve => setTimeout(resolve, timeoutMillis));
+    }
 }

@@ -1,5 +1,6 @@
 import { Api }                                    from './api';
 import { Chain, Eip712SignatureResponse, Wallet } from './models';
+import { Utils }                                  from './utils';
 
 export class Payer {
     private api: Api;
@@ -119,7 +120,8 @@ export class Payer {
         if (options?.dependsOnTxHash) {
             console.log('Waiting for transaction to confirm....')
             const status = await this.api.getTxStatus(chain, options.dependsOnTxHash);
-            if (status === 'PENDING') {
+            if (status === 'PENDING' || status === 'UNKNOWN') {
+                await Utils.wait(2000); //wait 2 seconds between status checks
                 return this.executeTransferFrom(chain, payerWallet, eip712Domain, toWalletAddress, options);
             }
             if (status === 'FAILED') {
